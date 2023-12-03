@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::BufReader;
 use std::io::BufRead;
 use std::process::exit;
+use std::ptr::null;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -42,6 +43,10 @@ fn get_total(reader: BufReader<File>) -> u32 {
             }
 
         };
+
+        if digit.len() == 0 {
+            break
+        }
 
         for char in line.chars().rev() {
             if char.is_digit(10) {
